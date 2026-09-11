@@ -1,0 +1,17 @@
+# Secrets / local-only state - never commit these
+.env
+*.env
+incidents_created.json
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / editor junk
+.DS_Store
+.vscode/
+
+# Downloaded duplicates from browser re-download attempts
+*_v2.py
+*\ \(1\).py
+*\ \(2\).py

@@ -1,0 +1,1209 @@
+number,short_description,description,category,subcategory,priority,urgency,impact,state,assignment_group,opened_at,resolved_at,close_notes
+INC0010042,SSC1 Add Customer abending intermittently,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 1)
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-05-18 07:47:40,2026-05-18 16:46:13,"Region SSPROD1 recycled, transaction resumed. Monitor for recurrence."
+INC0010043,Customer add failing again on SSC1,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042 (1 prior occurrence of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 2)
+Related/duplicate incidents: INC0010042
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,In Progress,CICS Systems Programming,2026-05-24 15:05:56,,
+INC0010044,LGV0 abend recurring on customer add,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043 (2 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 3)
+Related/duplicate incidents: INC0010042, INC0010043
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-05-30 15:38:03,2026-05-30 17:24:13,Recurred again post-bounce within 48 hrs. Escalating to storage team for KSDSCUST extend.
+INC0010045,Add Customer transaction abending - repeat of last week,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044 (3 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 4)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,In Progress,CICS Systems Programming,2026-06-05 16:17:33,,
+INC0010046,SSC1 customer add still failing after region bounce,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045 (4 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 5)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-06-09 12:17:10,2026-06-09 17:47:42,VSAM KSDSCUST is close to CI/CA split threshold. Region bounced as workaround; reorg not yet scheduled.
+INC0010047,SSC1 Add Customer abending intermittently,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046 (5 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 6)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-06-16 13:06:52,2026-06-17 00:31:30,VSAM KSDSCUST is close to CI/CA split threshold. Region bounced as workaround; reorg not yet scheduled.
+INC0010048,Customer add failing again on SSC1,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047 (6 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 7)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-06-19 18:29:55,2026-06-20 11:02:57,Recurred again post-bounce within 48 hrs. Escalating to storage team for KSDSCUST extend.
+INC0010049,LGV0 abend recurring on customer add,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048 (7 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 8)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-06-27 11:53:34,2026-06-28 07:07:24,VSAM KSDSCUST is close to CI/CA split threshold. Region bounced as workaround; reorg not yet scheduled.
+INC0010050,Add Customer transaction abending - repeat of last week,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049 (8 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 9)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-07-01 18:04:07,2026-07-01 20:23:51,VSAM KSDSCUST is close to CI/CA split threshold. Region bounced as workaround; reorg not yet scheduled.
+INC0010051,SSC1 customer add still failing after region bounce,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050 (9 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 10)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-07-05 10:55:24,2026-07-05 14:51:09,VSAM KSDSCUST is close to CI/CA split threshold. Region bounced as workaround; reorg not yet scheduled.
+INC0010052,SSC1 Add Customer abending intermittently,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051 (10 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 11)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-07-12 12:13:11,2026-07-13 08:39:17,"Region SSPROD1 recycled, transaction resumed. Monitor for recurrence."
+INC0010053,Customer add failing again on SSC1,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051, INC0010052 (11 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 12)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051, INC0010052
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-07-16 09:34:41,2026-07-17 07:43:22,Recurred again post-bounce within 48 hrs. Escalating to storage team for KSDSCUST extend.
+INC0010054,LGV0 abend recurring on customer add,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051, INC0010052, INC0010053 (12 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 13)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051, INC0010052, INC0010053
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-07-23 17:44:15,2026-07-24 10:53:20,"Region SSPROD1 recycled, transaction resumed. Monitor for recurrence."
+INC0010055,Add Customer transaction abending - repeat of last week,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051, INC0010052, INC0010053, INC0010054 (13 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 14)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051, INC0010052, INC0010053, INC0010054
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-07-28 07:51:13,2026-07-28 18:00:06,"Same symptom as last week - bounced the CICS region, txn works again. Reopening reorg request."
+INC0010056,SSC1 customer add still failing after region bounce,"User selected option 2 (Cust Add) on SSC1. Transaction abended with code LGV0 during the VSAM mirror write in LGACVS01 (KSDSCUST). Db2 insert into CUSTOMER completed but VSAM write failed, leaving Db2/VSAM out of sync for this customer.
+
+Duplicate/related incidents in this recurring thread: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051, INC0010052, INC0010053, INC0010054, INC0010055 (14 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACVS01
+Abend code: LGV0
+Return code: 80
+Recurring pattern: PTN-001 (occurrence 15)
+Related/duplicate incidents: INC0010042, INC0010043, INC0010044, INC0010045, INC0010046, INC0010047, INC0010048, INC0010049, INC0010050, INC0010051, INC0010052, INC0010053, INC0010054, INC0010055
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-08-01 16:56:15,2026-08-02 14:45:25,"Root cause confirmed: KSDSCUST free space exhausted, causing repeated CI/CA splits to fail under concurrent Add Customer load. Ran IDCAMS REPRO to reorganize KSDSCUST with increased FREESPACE, and CA size increased. No further LGV0 abends since reorg."
+INC0010057,Endowment policy update timing out,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 1)
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-06-04 14:25:27,2026-06-05 17:04:48,"Identified and killed the blocking thread, user retried successfully. No permanent action taken."
+INC0010058,SSP2 update hangs then fails,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057 (1 prior occurrence of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 2)
+Related/duplicate incidents: INC0010057
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-06-09 10:47:15,2026-06-10 04:04:02,Overlap with GENABAT2 batch window confirmed again. Advised user to retry later; no schedule change made.
+INC0010059,Policy update failing with SQL deadlock,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058 (2 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 3)
+Related/duplicate incidents: INC0010057, INC0010058
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-06-14 16:25:15,2026-06-15 03:55:07,"Identified and killed the blocking thread, user retried successfully. No permanent action taken."
+INC0010060,LGUPDB01 timeout during policy update - recurring,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058, INC0010059 (3 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 4)
+Related/duplicate incidents: INC0010057, INC0010058, INC0010059
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,In Progress,Db2 DBA,2026-06-19 08:48:28,,
+INC0010061,Endowment policy update timing out,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058, INC0010059, INC0010060 (4 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 5)
+Related/duplicate incidents: INC0010057, INC0010058, INC0010059, INC0010060
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-06-26 17:27:03,2026-06-27 11:44:48,Overlap with GENABAT2 batch window confirmed again. Advised user to retry later; no schedule change made.
+INC0010062,SSP2 update hangs then fails,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061 (5 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 6)
+Related/duplicate incidents: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-06-29 15:16:28,2026-06-30 20:26:09,"Identified and killed the blocking thread, user retried successfully. No permanent action taken."
+INC0010063,Policy update failing with SQL deadlock,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062 (6 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 7)
+Related/duplicate incidents: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-07-05 08:43:26,2026-07-06 11:22:58,Overlap with GENABAT2 batch window confirmed again. Advised user to retry later; no schedule change made.
+INC0010064,LGUPDB01 timeout during policy update - recurring,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063 (7 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 8)
+Related/duplicate incidents: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,In Progress,Db2 DBA,2026-07-12 11:27:15,,
+INC0010065,Endowment policy update timing out,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063, INC0010064 (8 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 9)
+Related/duplicate incidents: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063, INC0010064
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-07-15 11:32:40,2026-07-16 10:38:29,"Identified and killed the blocking thread, user retried successfully. No permanent action taken."
+INC0010066,SSP2 update hangs then fails,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063, INC0010064, INC0010065 (9 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 10)
+Related/duplicate incidents: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063, INC0010064, INC0010065
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-07-21 11:53:16,2026-07-22 07:25:02,"Identified and killed the blocking thread, user retried successfully. No permanent action taken."
+INC0010067,Policy update failing with SQL deadlock,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063, INC0010064, INC0010065, INC0010066 (10 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 11)
+Related/duplicate incidents: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063, INC0010064, INC0010065, INC0010066
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-07-28 09:34:08,2026-07-29 14:13:14,"Identified and killed the blocking thread, user retried successfully. No permanent action taken."
+INC0010068,LGUPDB01 timeout during policy update - recurring,"User attempted Update Policy on SSP2 (endowment). LGUPDB01 received SQLCODE -911 (deadlock/timeout, rollback) while updating the POLICY row. Occurs most often during the overlapping batch reconciliation window.
+
+Duplicate/related incidents in this recurring thread: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063, INC0010064, INC0010065, INC0010066, INC0010067 (11 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGUPDB01
+SQLCODE: -911
+Return code: 90
+Recurring pattern: PTN-002 (occurrence 12)
+Related/duplicate incidents: INC0010057, INC0010058, INC0010059, INC0010060, INC0010061, INC0010062, INC0010063, INC0010064, INC0010065, INC0010066, INC0010067
+Suggested assignment group: Db2 DBA",software,Database,2,3,2,Resolved,Db2 DBA,2026-08-02 14:01:33,2026-08-02 18:16:12,"Confirmed recurring contention between online policy updates and the GENABAT2 nightly reconciliation batch, which holds POLICY rows longer than expected. Batch window rescheduled outside online hours and commit frequency increased in the batch job. No recurrence in 3 weeks post-change."
+INC0010069,SSP3 house policy add returning short COMMAREA error,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 1)
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,Resolved,Mainframe Application Support,2026-06-23 19:19:55,2026-06-24 03:16:34,"Re-ran GENAHFED feed job manually with prior day's layout, records loaded, ticket closed."
+INC0010070,House policy transactions failing with RC 98,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+Duplicate/related incidents in this recurring thread: INC0010069 (1 prior occurrence of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 2)
+Related/duplicate incidents: INC0010069
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,Resolved,Mainframe Application Support,2026-06-29 14:52:58,2026-06-29 17:53:24,"Re-ran GENAHFED feed job manually with prior day's layout, records loaded, ticket closed."
+INC0010071,SSP3 add/update failing again - COMMAREA too short,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+Duplicate/related incidents in this recurring thread: INC0010069, INC0010070 (2 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 3)
+Related/duplicate incidents: INC0010069, INC0010070
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,Resolved,Mainframe Application Support,2026-07-03 14:35:20,2026-07-03 20:22:40,Same feed truncation as before. Ops re-ran job again with manual byte-count override.
+INC0010072,SSP3 house policy add returning short COMMAREA error,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+Duplicate/related incidents in this recurring thread: INC0010069, INC0010070, INC0010071 (3 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 4)
+Related/duplicate incidents: INC0010069, INC0010070, INC0010071
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,Resolved,Mainframe Application Support,2026-07-05 15:48:57,2026-07-06 13:59:01,Same feed truncation as before. Ops re-ran job again with manual byte-count override.
+INC0010073,House policy transactions failing with RC 98,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+Duplicate/related incidents in this recurring thread: INC0010069, INC0010070, INC0010071, INC0010072 (4 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 5)
+Related/duplicate incidents: INC0010069, INC0010070, INC0010071, INC0010072
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,Resolved,Mainframe Application Support,2026-07-11 17:41:21,2026-07-12 05:31:06,Same feed truncation as before. Ops re-ran job again with manual byte-count override.
+INC0010074,SSP3 add/update failing again - COMMAREA too short,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+Duplicate/related incidents in this recurring thread: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073 (5 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 6)
+Related/duplicate incidents: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,Resolved,Mainframe Application Support,2026-07-16 10:04:15,2026-07-16 20:52:31,"Re-ran GENAHFED feed job manually with prior day's layout, records loaded, ticket closed."
+INC0010075,SSP3 house policy add returning short COMMAREA error,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+Duplicate/related incidents in this recurring thread: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073, INC0010074 (6 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 7)
+Related/duplicate incidents: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073, INC0010074
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,In Progress,Mainframe Application Support,2026-07-19 07:04:56,,
+INC0010076,House policy transactions failing with RC 98,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+Duplicate/related incidents in this recurring thread: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073, INC0010074, INC0010075 (7 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 8)
+Related/duplicate incidents: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073, INC0010074, INC0010075
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,Resolved,Mainframe Application Support,2026-07-23 12:04:35,2026-07-24 03:59:13,Same feed truncation as before. Ops re-ran job again with manual byte-count override.
+INC0010077,SSP3 add/update failing again - COMMAREA too short,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+Duplicate/related incidents in this recurring thread: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073, INC0010074, INC0010075, INC0010076 (8 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 9)
+Related/duplicate incidents: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073, INC0010074, INC0010075, INC0010076
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,Resolved,Mainframe Application Support,2026-07-29 09:46:29,2026-07-30 13:54:17,Same feed truncation as before. Ops re-ran job again with manual byte-count override.
+INC0010078,SSP3 house policy add returning short COMMAREA error,"SSP3 (House Policy) transactions failing with CA-RETURN-CODE 98 (COMMAREA too short). Traced to an upstream batch-generated feed file populating fewer bytes than LGUPOL01 expects for house-policy-specific fields.
+
+Duplicate/related incidents in this recurring thread: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073, INC0010074, INC0010075, INC0010076, INC0010077 (9 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: LGUPOL01
+Job: GENAHFED
+Return code: 98
+Recurring pattern: PTN-003 (occurrence 10)
+Related/duplicate incidents: INC0010069, INC0010070, INC0010071, INC0010072, INC0010073, INC0010074, INC0010075, INC0010076, INC0010077
+Suggested assignment group: Mainframe Application Support",software,Batch,3,2,3,Resolved,Mainframe Application Support,2026-08-02 14:51:00,2026-08-03 03:39:17,Upstream feed file spec had not been updated after the House Policy COMMAREA was extended in the last release. Coordinated with the feed-file owning team to correct the copybook length; GENAHFED now generates full-length records.
+INC0010079,SSC1 abending with LGCA - no COMMAREA received,"LGTESTC1 abending with code LGCA (EIBCALEN = 0) - transaction started with no COMMAREA. Pattern correlates with a synthetic-transaction monitor hitting SSC1 directly without going through the menu flow.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Abend code: LGCA
+Recurring pattern: PTN-004 (occurrence 1)
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,4,2,3,Resolved,CICS Systems Programming,2026-07-04 17:27:30,2026-07-05 04:43:59,"Suppressed the abend messages at console level, no root cause investigation this time."
+INC0010080,Repeat LGCA abends on customer menu transaction,"LGTESTC1 abending with code LGCA (EIBCALEN = 0) - transaction started with no COMMAREA. Pattern correlates with a synthetic-transaction monitor hitting SSC1 directly without going through the menu flow.
+
+Duplicate/related incidents in this recurring thread: INC0010079 (1 prior occurrence of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Abend code: LGCA
+Recurring pattern: PTN-004 (occurrence 2)
+Related/duplicate incidents: INC0010079
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,4,2,3,Resolved,CICS Systems Programming,2026-07-07 17:06:29,2026-07-07 19:51:57,"Suppressed the abend messages at console level, no root cause investigation this time."
+INC0010081,SSC1 LGCA abend flooding CSMT log,"LGTESTC1 abending with code LGCA (EIBCALEN = 0) - transaction started with no COMMAREA. Pattern correlates with a synthetic-transaction monitor hitting SSC1 directly without going through the menu flow.
+
+Duplicate/related incidents in this recurring thread: INC0010079, INC0010080 (2 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Abend code: LGCA
+Recurring pattern: PTN-004 (occurrence 3)
+Related/duplicate incidents: INC0010079, INC0010080
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,4,2,3,Resolved,CICS Systems Programming,2026-07-12 10:34:39,2026-07-13 00:35:14,"Confirmed synthetic monitor probe again, asked NOC to review script - no change made yet."
+INC0010082,SSC1 abending with LGCA - no COMMAREA received,"LGTESTC1 abending with code LGCA (EIBCALEN = 0) - transaction started with no COMMAREA. Pattern correlates with a synthetic-transaction monitor hitting SSC1 directly without going through the menu flow.
+
+Duplicate/related incidents in this recurring thread: INC0010079, INC0010080, INC0010081 (3 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Abend code: LGCA
+Recurring pattern: PTN-004 (occurrence 4)
+Related/duplicate incidents: INC0010079, INC0010080, INC0010081
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,4,2,3,Resolved,CICS Systems Programming,2026-07-16 08:28:43,2026-07-17 08:54:41,"Suppressed the abend messages at console level, no root cause investigation this time."
+INC0010083,Repeat LGCA abends on customer menu transaction,"LGTESTC1 abending with code LGCA (EIBCALEN = 0) - transaction started with no COMMAREA. Pattern correlates with a synthetic-transaction monitor hitting SSC1 directly without going through the menu flow.
+
+Duplicate/related incidents in this recurring thread: INC0010079, INC0010080, INC0010081, INC0010082 (4 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Abend code: LGCA
+Recurring pattern: PTN-004 (occurrence 5)
+Related/duplicate incidents: INC0010079, INC0010080, INC0010081, INC0010082
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,4,2,3,In Progress,CICS Systems Programming,2026-07-21 15:53:10,,
+INC0010084,SSC1 LGCA abend flooding CSMT log,"LGTESTC1 abending with code LGCA (EIBCALEN = 0) - transaction started with no COMMAREA. Pattern correlates with a synthetic-transaction monitor hitting SSC1 directly without going through the menu flow.
+
+Duplicate/related incidents in this recurring thread: INC0010079, INC0010080, INC0010081, INC0010082, INC0010083 (5 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Abend code: LGCA
+Recurring pattern: PTN-004 (occurrence 6)
+Related/duplicate incidents: INC0010079, INC0010080, INC0010081, INC0010082, INC0010083
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,4,2,3,Resolved,CICS Systems Programming,2026-07-25 14:30:40,2026-07-25 21:42:35,"Suppressed the abend messages at console level, no root cause investigation this time."
+INC0010085,SSC1 abending with LGCA - no COMMAREA received,"LGTESTC1 abending with code LGCA (EIBCALEN = 0) - transaction started with no COMMAREA. Pattern correlates with a synthetic-transaction monitor hitting SSC1 directly without going through the menu flow.
+
+Duplicate/related incidents in this recurring thread: INC0010079, INC0010080, INC0010081, INC0010082, INC0010083, INC0010084 (6 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Abend code: LGCA
+Recurring pattern: PTN-004 (occurrence 7)
+Related/duplicate incidents: INC0010079, INC0010080, INC0010081, INC0010082, INC0010083, INC0010084
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,4,2,3,Resolved,CICS Systems Programming,2026-07-30 07:24:20,2026-07-30 16:05:47,"Confirmed synthetic monitor probe again, asked NOC to review script - no change made yet."
+INC0010086,Repeat LGCA abends on customer menu transaction,"LGTESTC1 abending with code LGCA (EIBCALEN = 0) - transaction started with no COMMAREA. Pattern correlates with a synthetic-transaction monitor hitting SSC1 directly without going through the menu flow.
+
+Duplicate/related incidents in this recurring thread: INC0010079, INC0010080, INC0010081, INC0010082, INC0010083, INC0010084, INC0010085 (7 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Abend code: LGCA
+Recurring pattern: PTN-004 (occurrence 8)
+Related/duplicate incidents: INC0010079, INC0010080, INC0010081, INC0010082, INC0010083, INC0010084, INC0010085
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,4,2,3,Resolved,CICS Systems Programming,2026-08-02 18:46:00,2026-08-04 00:38:02,Traced to the Instana synthetic-transaction monitor invoking SSC1 directly instead of via the pseudo-conversational menu entry point. Monitor script corrected to pass an initial COMMAREA; LGCA abends stopped.
+INC0010087,Cust Inquiry shows 'No data was returned' for unknown customer,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Single branch office reported, treated as isolated.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 1)
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,3,2,3,Resolved,Mainframe Application Support,2026-04-29 18:31:04,2026-04-30 00:00:25,"Confirmed expected-but-unhelpful behavior, explained to user, no code change made."
+INC0010088,SSC1 inquiry error message unclear for invalid customer number,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Second occurrence, different branch - pattern noted informally by app support.
+
+Duplicate/related incidents in this recurring thread: INC0010087 (1 prior occurrence of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 2)
+Related/duplicate incidents: INC0010087
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,3,2,3,In Progress,Mainframe Application Support,2026-05-02 15:03:10,,
+INC0010089,Customer enquiry screen giving generic error again,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Third occurrence in the month - now visibly recurring across branches, call center volume ticking up.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088 (2 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 3)
+Related/duplicate incidents: INC0010087, INC0010088
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,2,2,3,Resolved,Mainframe Application Support,2026-05-05 15:10:45,2026-05-05 17:49:43,Repeat of prior tickets on this screen. Flagged to app support backlog again.
+INC0010090,Users confused by 'No data was returned' on customer lookup,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fourth occurrence - customer service escalated to regional manager; workaround shared with staff.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089 (3 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 4)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,2,1,2,Resolved,Mainframe Application Support,2026-05-10 08:43:42,2026-05-11 10:43:16,"Logged and linked to the existing recurring-incident thread, no new investigation needed."
+INC0010091,SSC1 Cust Inquiry - non-specific error for missing customer,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fifth occurrence - flagged by GSI partner Accenture during UAT test cycle as a recurring defect blocking sign-off.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090 (4 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 5)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,2,1,2,Resolved,Mainframe Application Support,2026-05-13 16:02:18,2026-05-14 11:00:02,"Logged and linked to the existing recurring-incident thread, no new investigation needed."
+INC0010092,Repeat complaint: customer inquiry error message not helpful,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Sixth occurrence - now logged as a Problem candidate; repeated temporary handling with no fix.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091 (5 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 6)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,2,Resolved,Mainframe Application Support,2026-05-15 12:59:25,2026-05-15 21:33:09,Duplicate of this exact defect - opening as Problem candidate given repeat count and business escalation.
+INC0010093,Third branch office this month reporting same SSC1 inquiry error,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Seventh occurrence - CAB visibility raised; recurring-incident report flags this as top offender.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092 (6 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 7)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-05-19 13:08:19,2026-05-20 09:37:03,Duplicate of this exact defect - opening as Problem candidate given repeat count and business escalation.
+INC0010094,SSC1 generic error now flagged by GSI partner during UAT,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Eighth occurrence - business stakeholders request permanent fix before next release freeze.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093 (7 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 8)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-05-21 08:00:19,2026-05-21 22:17:44,"Same complaint logged by a different branch office user. Logged as recurring UX defect, no fix yet."
+INC0010095,"Recurring SSC1 inquiry defect - still unresolved, escalating","User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Ninth occurrence - now the single most-reported defect on the weekly incident review.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094 (8 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 9)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-05-26 10:32:26,2026-05-26 19:13:53,"Same complaint logged by a different branch office user. Logged as recurring UX defect, no fix yet."
+INC0010096,Yet another branch reports the same SSC1 inquiry defect,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Tenth-plus occurrence - chronic, unresolved, still only handled with a workaround each time.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095 (9 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 10)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-05-27 12:18:43,2026-05-27 17:53:12,Recurring defect confirmed again - GSI partner raised concern this is now a UAT blocker. Still no code change.
+INC0010097,Call center logs another complaint about SSC1 error wording,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Continuing recurrence - included in every weekly recurring-incident report until fixed.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096 (10 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 11)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-05-31 19:41:57,2026-06-01 12:02:19,No change from prior occurrences - waiting on the Bob-assisted fix already in progress.
+INC0010098,SSC1 inquiry defect - now tracked as top recurring incident,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097 (11 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 12)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,In Progress,Mainframe Application Support,2026-06-05 17:06:20,,
+INC0010099,Cust Inquiry shows 'No data was returned' for unknown customer,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098 (12 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 13)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-06-06 18:35:20,2026-06-07 00:05:49,"Same root cause as the last several tickets - duplicate confirmed, no fix applied, closed as workaround only."
+INC0010100,SSC1 inquiry error message unclear for invalid customer number,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099 (13 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 14)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-06-10 10:43:03,2026-06-11 06:06:37,Still only a workaround applied - permanent fix now prioritized for next sprint via Bob.
+INC0010101,Customer enquiry screen giving generic error again,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100 (14 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 15)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-06-14 07:05:32,2026-06-15 02:29:11,"Confirmed expected-but-unhelpful behavior, explained to user, no code change made."
+INC0010102,Users confused by 'No data was returned' on customer lookup,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101 (15 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 16)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-06-19 19:08:18,2026-06-20 14:36:52,Still only a workaround applied - permanent fix now prioritized for next sprint via Bob.
+INC0010103,SSC1 Cust Inquiry - non-specific error for missing customer,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102 (16 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 17)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,In Progress,Mainframe Application Support,2026-06-20 13:35:36,,
+INC0010104,Repeat complaint: customer inquiry error message not helpful,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103 (17 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 18)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-06-23 12:37:09,2026-06-24 05:38:32,"Confirmed expected-but-unhelpful behavior, explained to user, no code change made."
+INC0010105,Third branch office this month reporting same SSC1 inquiry error,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104 (18 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 19)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-06-27 19:55:40,2026-06-27 22:05:05,"Same root cause as the last several tickets - duplicate confirmed, no fix applied, closed as workaround only."
+INC0010106,SSC1 generic error now flagged by GSI partner during UAT,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105 (19 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 20)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-06-30 12:49:26,2026-07-01 06:03:37,"Logged and linked to the existing recurring-incident thread, no new investigation needed."
+INC0010107,"Recurring SSC1 inquiry defect - still unresolved, escalating","User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106 (20 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 21)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-07-03 10:55:05,2026-07-03 16:37:50,Repeat of prior tickets on this screen. Flagged to app support backlog again.
+INC0010108,Yet another branch reports the same SSC1 inquiry defect,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107 (21 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 22)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-07-06 07:11:21,2026-07-07 05:32:58,"Same signature (SQLCODE +100, LGICUS01/LGICDB01, SSC1) as every prior ticket in this thread."
+INC0010109,Call center logs another complaint about SSC1 error wording,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108 (22 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 23)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-07-09 18:51:39,2026-07-10 03:03:27,"Same complaint logged by a different branch office user. Logged as recurring UX defect, no fix yet."
+INC0010110,SSC1 inquiry defect - now tracked as top recurring incident,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109 (23 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 24)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-07-14 07:54:58,2026-07-14 22:33:58,Still only a workaround applied - permanent fix now prioritized for next sprint via Bob.
+INC0010111,Cust Inquiry shows 'No data was returned' for unknown customer,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110 (24 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 25)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,In Progress,Mainframe Application Support,2026-07-17 19:55:16,,
+INC0010112,SSC1 inquiry error message unclear for invalid customer number,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111 (25 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 26)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-07-20 11:55:39,2026-07-20 14:56:27,Duplicate of this exact defect - opening as Problem candidate given repeat count and business escalation.
+INC0010113,Customer enquiry screen giving generic error again,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111, INC0010112 (26 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 27)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111, INC0010112
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-07-23 13:43:04,2026-07-24 19:10:16,"Confirmed expected-but-unhelpful behavior, explained to user, no code change made."
+INC0010114,Users confused by 'No data was returned' on customer lookup,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111, INC0010112, INC0010113 (27 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 28)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111, INC0010112, INC0010113
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-07-27 11:11:14,2026-07-28 05:01:28,"Confirmed expected-but-unhelpful behavior, explained to user, no code change made."
+INC0010116,Repeat complaint: customer inquiry error message not helpful,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111, INC0010112, INC0010113, INC0010114, INC0010115 (29 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 30)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111, INC0010112, INC0010113, INC0010114, INC0010115
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-07-31 08:24:06,2026-08-01 11:29:14,"Root cause and fix implemented via IBM Bob (Z Architect mode): analysis captured in .bobz/issue-fix-1/issue-1-analysis.md, feature branch feature/issue-fix-1 created, LGTESTC1/LGICUS01 updated to check CA-RETURN-CODE and SQLCODE +100 explicitly and display 'Customer ID not found' via SSMAPC1. Change built with DBB User Build, pushed, and PR 'Issue Fix: 1' raised against the GitHub issue. Verified fix resolves all prior duplicate incidents in this thread. RCA screenshot from Bob attached as evidence."
+INC0010115,SSC1 Cust Inquiry - non-specific error for missing customer,"User performed Cust Inquiry (option 1) on SSC1 with a Customer Number that does not exist. Screen returns the generic message 'No data was returned.' instead of a clear 'Customer ID not found' message. LGICUS01/LGICDB01 correctly receive SQLCODE +100 (no row found) but the presentation tier does not translate this into a specific error for the end user. Screenshot attached from SSMAPC1.
+
+Business impact: Fix delivered end-to-end via Bob-assisted development; verified against every prior duplicate incident.
+
+Duplicate/related incidents in this recurring thread: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111, INC0010112, INC0010113, INC0010114 (28 prior occurrences of the same root cause).
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGICDB01 / LGICUS01
+SQLCODE: +100
+Return code: 00
+Recurring pattern: PTN-005 (occurrence 29)
+Related/duplicate incidents: INC0010087, INC0010088, INC0010089, INC0010090, INC0010091, INC0010092, INC0010093, INC0010094, INC0010095, INC0010096, INC0010097, INC0010098, INC0010099, INC0010100, INC0010101, INC0010102, INC0010103, INC0010104, INC0010105, INC0010106, INC0010107, INC0010108, INC0010109, INC0010110, INC0010111, INC0010112, INC0010113, INC0010114
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,1,1,1,Resolved,Mainframe Application Support,2026-07-31 13:22:27,2026-08-01 11:30:07,"Logged and linked to the existing recurring-incident thread, no new investigation needed."
+INC0010134,CICS region abended (ASRA) - bad LOADLIB member from mis-targeted deployment,"Region SSPROD1 abended shortly after a scheduled deployment window. Traced to a one-off deployment error where a load module intended for a different LPAR's test region was mistakenly promoted into the production LOADLIB concatenation.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: n/a
+Abend code: ASRA
+Suggested assignment group: CICS Systems Programming",software,Deployment,1,3,1,Resolved,CICS Systems Programming,2026-05-10 09:39:50,2026-05-11 01:29:49,Removed the mis-targeted load module and restarted the region with the correct build. One-time deployment targeting error; deployment pipeline updated to validate target LPAR/environment before promoting load modules.
+INC0010132,Endowment inquiry showing incorrect DOB format after copybook patch,"SSP2 Cust Inquiry briefly displayed dates of birth in the wrong format (MM-DD-YYYY instead of YYYY-MM-DD) for a subset of users. Traced to a one-off manual patch applied to a regional date-format setting in LGCMAREA that was not intended for this environment.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGICUS01
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,3,2,2,Resolved,Mainframe Application Support,2026-05-13 05:47:53,2026-05-13 13:23:08,Reverted the regional date-format patch back to the correct setting for this environment. One-time configuration error during environment refresh; refresh checklist updated to explicitly verify locale/date-format settings.
+INC0010119,GENACNTL TSQ ENQ contention during high-volume customer add batch,"A one-time bulk customer-load batch job ran concurrently with heavy online SSC1 Add Customer traffic, causing ENQ waits on the GENACNTL TSQ maintained by LGTESTC1. Several online add-customer transactions experienced elevated response time (8-12s) during the overlap window.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Job: GENABULK
+Suggested assignment group: CICS Systems Programming",performance,Online Transaction,3,2,3,Resolved,CICS Systems Programming,2026-05-13 23:09:05,2026-05-14 04:41:52,Confirmed root cause as ENQ serialization on GENACNTL during the one-off bulk load. Bulk job was not scheduled during business hours previously; scheduling note added so this does not recur. No code change needed.
+INC0010122,CICS region short-on-storage abend during month-end batch add-policy spike,"Region SSPROD1 hit short-on-storage (SOS) during the month-end policy-renewal batch window, causing several SSP1-SSP4 transactions to abend or queue. One-time volume-driven event; region recovered automatically once the batch completed.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1-SSP4
+Program: n/a
+Job: GENARENEW
+Abend code: ASRA/AKCT
+Suggested assignment group: CICS Systems Programming",performance,Online Transaction,2,3,3,Resolved,CICS Systems Programming,2026-05-17 10:01:16,2026-05-18 00:01:31,"Confirmed as a capacity event tied to month-end renewal volume, not a code defect. DSA limits temporarily raised for the remainder of the batch window; capacity planning made aware for next month-end sizing."
+INC0010138,Intermittent 'resource unavailable' errors during one-off concurrent load test,"Several SSx transactions briefly failed with Db2 resource-unavailable errors during a scheduled concurrent load test. Traced to the test briefly exceeding the Db2 subsystem's CTHREAD (concurrent thread) limit, which was sized for normal production concurrency, not the test's simulated peak.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1/SSP1-4
+Program: n/a
+SQLCODE: -904
+Suggested assignment group: Db2 DBA",performance,Database,3,2,3,Resolved,Db2 DBA,2026-05-20 12:22:36,2026-05-21 04:23:18,Confirmed as a one-time test-only event; CTHREAD was temporarily raised for the remainder of the test window and reverted afterward. Production CTHREAD sizing confirmed adequate for real traffic; no permanent change needed.
+INC0010133,Customer update transaction hanging - missing index after schema migration,"SSC1 Cust Update transactions began running very slowly (10-15s) for all users. Traced to a one-off schema migration the previous weekend that dropped and recreated the CUSTOMER table's secondary index, but the post-migration step to rebuild statistics (RUNSTATS) was missed, leading Db2 to pick a poor access path.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGUCDB01
+Suggested assignment group: Db2 DBA",performance,Database,2,3,3,Resolved,Db2 DBA,2026-05-25 08:33:30,2026-05-25 11:23:25,"Ran RUNSTATS on the CUSTOMER table and rebound the affected packages; response times returned to normal. One-time post-migration step miss; migration runbook updated to make RUNSTATS a mandatory, checked-off step."
+INC0010125,Motor policy add failing - Db2 package not rebound after DBRM regeneration,"SSP1 Add Policy failing with SQLCODE -805 (package not found) on LGAPDB01. Traced to a one-off deployment gap where the DBRM was regenerated during the last release but the corresponding Db2 package bind step was missed.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1
+Program: LGAPDB01
+SQLCODE: -805
+Return code: 90
+Suggested assignment group: Db2 DBA",software,Database,1,2,2,Resolved,Db2 DBA,2026-05-30 04:37:39,2026-05-30 16:52:17,Ran the missing BIND PACKAGE step manually for LGAPDB01. One-time deployment gap; release checklist updated to include an explicit bind-verification step so this doesn't recur on future releases.
+INC0010130,VSAM extend failure on KSDSPOLY during batch load - DASD volume full,"Nightly policy batch load job abended when LGAPVS01 could not extend KSDSPOLY. Traced to a one-off DASD volume reaching 100% utilization overnight after an unrelated application's one-time large dataset allocation consumed the remaining free space on the shared volume.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: LGAPVS01
+Job: GENAPBAT
+Return code: 80
+Suggested assignment group: z/OS Batch Ops",software,VSAM,1,3,2,Resolved,z/OS Batch Ops,2026-05-30 23:03:30,2026-05-31 06:10:00,Freed space on the shared DASD volume and re-ran the batch load successfully. One-time capacity collision with an unrelated application; storage team added a threshold alert on that volume group to catch this earlier next time.
+INC0010136,Commercial policy add - MQ trigger to billing system failed during MQ maintenance,"A commercial policy was added successfully in GENAPP but the downstream billing system was never notified. Traced to a one-off MQ channel restart during a scheduled MQ maintenance window that silently dropped the trigger message before the billing listener could process it.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP4
+Program: n/a
+Suggested assignment group: Mainframe Application Support",integration,Messaging,2,2,3,Resolved,Mainframe Application Support,2026-06-01 13:26:49,2026-06-01 22:38:27,Manually replayed the missed billing notification for the affected policy. One-time MQ maintenance-window collision; MQ team confirmed the maintenance record and agreed to notify application owners of channel restarts going forward.
+INC0010131,Motor policy add abending - EBCDIC/ASCII encoding mismatch from feed tool,"SSP1 Add Policy abending on a batch-fed record. Traced to a one-off incident where a Windows-based file-transfer tool was used to move a policy feed file in binary/ASCII mode instead of EBCDIC text mode, corrupting the packed-decimal fields LGAPDB01 expected.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1
+Program: LGAPDB01
+Job: GENAMFED
+Abend code: S0C7
+Suggested assignment group: Mainframe Application Support",software,Batch,2,2,2,Resolved,Mainframe Application Support,2026-06-05 23:10:19,2026-06-06 02:51:10,Re-transferred the feed file in the correct EBCDIC text transfer mode and re-ran the load; records processed cleanly. One-time operator error using an unfamiliar transfer tool; documented the correct transfer settings for future use of that tool.
+INC0010121,VSAM/Db2 mirror mismatch found for Motor policy during nightly reconciliation,"Nightly reconciliation batch found a Motor policy present in Db2 POLICY/MOTOR tables but missing from the KSDSPOLY VSAM mirror. Traced to a CICS short-on-storage (SOS) condition that hit LGAPVS01 immediately after the LGAPDB01 Db2 commit during a month-end volume spike, so the mirror write was lost without triggering the usual LGV0 rollback path.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1
+Program: LGAPVS01
+Job: GENARECON
+Return code: 80
+Suggested assignment group: CICS Systems Programming",software,VSAM,1,3,2,Resolved,CICS Systems Programming,2026-06-09 07:42:49,2026-06-09 11:57:25,Manually rebuilt the missing VSAM mirror record from Db2 using the reconciliation report. CICS region storage limits reviewed and increased ahead of next month-end cycle. Flagged as a data-integrity risk for Problem Management review - two-phase write pattern between LGAPDB01/LGAPVS01 does not currently guard against SOS between the two calls.
+INC0010118,GENACUSTNUM named counter unavailable - customer numbering inconsistency,"Named Counter Service was unavailable during Add Customer processing. LGACDB01 fell back to Db2 AUTO-IDENTITY as designed, but the GENACNTL TSQ high-water mark maintained by LGTESTC1 was not updated, causing a temporary mismatch between VSAM random-inquiry seeding and actual customer numbers.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACDB01
+Return code: 00
+Suggested assignment group: CICS Systems Programming",software,Database,3,2,2,Resolved,CICS Systems Programming,2026-06-17 19:38:25,2026-06-18 10:00:14,Named Counter Service pool GENA was restarted after CICS maintenance; fallback behaved as designed. Ran LGSETUP to resynchronize GENACNTL TSQ once service was restored. One-time event tied to the maintenance window.
+INC0010129,Transient response-time spike across SSC1/SSP1-4 during capacity test,"All GENAPP online transactions saw elevated response times (3-5x normal) for about two hours. Traced to a one-off WLM service class misclassification during a scheduled capacity test, which put GENAPP transactions in a lower priority service class than intended for the duration of the test.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1/SSP1-4
+Program: n/a
+Suggested assignment group: CICS Systems Programming",performance,Online Transaction,2,3,3,Resolved,CICS Systems Programming,2026-06-18 13:12:59,2026-06-19 08:29:36,Corrected the WLM service class assignment back to the standard GENAPP policy once identified. One-time misconfiguration tied to the capacity test plan; test plan updated to snapshot and restore WLM policy automatically.
+INC0010140,DBB pipeline failed once due to z/OSMF token expiration,"A scheduled DBB build pipeline run for GENAPP failed at the z/OS Connect / z/OSMF authentication step. Traced to a one-off expired z/OSMF token that had not been rotated ahead of its scheduled expiry, unrelated to any code change in the pipeline run itself.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: n/a
+Suggested assignment group: Mainframe Application Support",software,CI/CD,3,2,3,Resolved,Mainframe Application Support,2026-06-22 12:55:39,2026-06-23 07:26:31,Rotated the z/OSMF token and re-ran the pipeline successfully. One-time credential-expiry gap; added a token-expiry monitor/alert to the pipeline configuration so this is caught before it blocks a build.
+INC0010135,Commercial policy delete - orphaned VSAM record after mid-transaction network blip,"A commercial policy was found deleted from Db2 but still present in the VSAM mirror. Traced to a one-off network blip between the CICS region and the coupling facility that caused LGDPVS01's mirror delete to fail silently after the Db2 delete in LGDPDB01 had already committed.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP4
+Program: LGDPVS01
+Return code: 80
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-06-23 03:10:38,2026-06-23 15:32:21,Manually removed the orphaned VSAM record to match Db2. One-time network transient confirmed by the network team's own incident log for that window; no application change needed.
+INC0010120,LGWEBST5 web statistics daemon abended - GENASTAT TSQ stopped refreshing,"The LGWEBST5 repeating statistics daemon abended (transaction storage violation), stopping refresh of the GENASTAT TSQ. Business Monitor web dashboard showed stale statistics for approximately 40 minutes before detection. No impact to core Add/Inquire/Update/Delete transactions.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: LGWEBST5
+Abend code: ASRA
+Suggested assignment group: CICS Systems Programming",software,Monitoring,4,1,4,Resolved,CICS Systems Programming,2026-06-25 02:28:08,2026-06-25 21:02:34,Storage violation traced to a one-time working-storage overrun when the GENA* named counters were reset mid-cycle by an ad hoc LGSETUP run. LGWEBST5 was restarted manually. No recurrence expected outside of another manual LGSETUP run during an active statistics cycle.
+INC0010126,Commercial policy inquiry abending - copybook mismatch after manual edit,"SSP4 Cust/Policy Inquiry abending with a level-mismatch (S0C4-class) error in LGIPOL01. Traced to a one-off manual copybook edit applied directly to LGCMAREA outside of the normal DBB pipeline, which was never recompiled into LGIPDB01, leaving the two programs out of sync.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP4
+Program: LGIPOL01 / LGIPDB01
+Abend code: S0C4
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,1,3,2,Resolved,CICS Systems Programming,2026-06-27 06:05:36,2026-06-27 13:33:47,"Reverted the out-of-band copybook edit and reapplied the intended change through the normal DBB build pipeline so both programs recompiled together. One-time process breach; reminder issued that copybook changes must always go through DBB, not manual dataset edits."
+INC0010123,SOA web service call to SSISTAT1 timing out from LGWEBST5,"LGWEBST5's optional TCP/IP push to the Business Monitor listener (SSISTAT1) timed out once during a network maintenance window, logged to CSMT via LGSTSQ. Statistics TSQ (GENASTAT) continued to update normally; only the external web push was affected.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: LGWEBST5
+Suggested assignment group: Mainframe Application Support",network,Integration,4,1,4,Resolved,Mainframe Application Support,2026-07-03 22:52:37,2026-07-04 10:51:23,"Confirmed one-time network maintenance on the TCP/IP listener side, no CICS or application change required. Network team confirmed maintenance window in their own change record."
+INC0010128,GENARENEW batch delayed a full day by JES2 job class contention,"Month-end policy renewal batch (GENARENEW) was delayed by roughly 20 hours due to a one-off JES2 job class configuration change made for an unrelated application, which inadvertently starved GENARENEW's job class of initiators.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: n/a
+Job: GENARENEW
+Suggested assignment group: z/OS Batch Ops",performance,Batch,2,3,2,Resolved,z/OS Batch Ops,2026-07-04 09:46:41,2026-07-04 23:56:21,Reverted the JES2 job class change that had starved GENARENEW's initiators. One-time scheduling conflict; JES2 change process updated to require batch window impact review before altering shared job classes.
+INC0010139,TAZ regression run flagged a false positive from test-data drift,"An automated TAZ (Test Accelerator for Z) regression run against GENAPP flagged a failure on the customer inquiry test case. Investigation found the application behaved correctly - the one-off failure was caused by test data in the regression suite that had drifted out of sync with a recent, unrelated data refresh.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: n/a
+Suggested assignment group: Mainframe Application Support",software,Testing,4,1,4,Resolved,Mainframe Application Support,2026-07-12 19:25:08,2026-07-13 09:56:43,"Confirmed no application defect; refreshed the TAZ regression suite's test data to match the current environment. One-time test-data drift, not a code issue - closed with no application change."
+INC0010127,House policy update failing - new user ID missing CICS transaction authority,"A newly onboarded branch user could not access SSP3 (House Policy Update), receiving a security violation. Traced to a one-off RACF provisioning gap - the new user ID was added to the general CICS region group but not the GENAPP transaction resource class.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: n/a
+Suggested assignment group: Mainframe Application Support",security,Access,3,2,3,Resolved,Mainframe Application Support,2026-07-13 12:53:13,2026-07-14 01:48:24,Added the missing RACF permit for the user to the GENAPP transaction resource class. One-time onboarding gap; added a check to the new-starter provisioning runbook so future onboarding includes GENAPP transaction access.
+INC0010124,Endowment policy delete stuck - VSAM record locked by stuck batch job,"SSP2 Delete Policy hung waiting on a VSAM record lock in KSDSPOLY. Traced to a one-off GENARECON reconciliation job that had abended mid-transaction the previous night without releasing its VSAM enqueue, leaving the record locked for LGDPVS01 all morning.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGDPVS01
+Job: GENARECON
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-07-15 02:52:31,2026-07-15 11:41:59,"Identified and cancelled the orphaned enqueue left by the previous night's abended GENARECON run, releasing the lock. One-time cleanup; GENARECON abend itself was a separate unrelated dataset issue already resolved."
+INC0010117,Nightly COBOL compile job abending - load library dataset not cataloged,"GENACOMP nightly compile job (cobol.jcl) abended with JCL error, RC=612. Load library dataset was not cataloged following the weekend DASD migration. One-time infrastructure issue, unrelated to application code.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: cobol.jcl
+Job: GENACOMP
+Return code: JCL RC=612
+Suggested assignment group: z/OS Batch Ops",software,Batch,2,2,2,Resolved,z/OS Batch Ops,2026-07-15 13:49:49,2026-07-15 23:40:46,Load library dataset re-cataloged by storage team following DASD migration runbook gap. One-time fix; migration runbook updated to include cataloging step for future migrations.
+INC0010137,CICS transaction dump dataset full - blocking new transaction dumps,"Ops noticed no new CICS transaction dumps were being captured for GENAPP abends. Traced to a one-off situation where the transaction dump dataset had filled up after an unrelated spike in abends from a different application sharing the same region's dump dataset.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: n/a
+Suggested assignment group: CICS Systems Programming",software,Monitoring,3,1,3,Resolved,CICS Systems Programming,2026-07-18 18:47:11,2026-07-19 12:51:15,Cleared and reset the transaction dump dataset. One-time capacity issue driven by an unrelated application's abend spike; considered separating dump datasets per application but not required given this was an isolated event.
+INC0010141,Motor policy quote calculation off by a rounding error after compiler upgrade,"A single motor policy quote was found to be off by a few cents. Traced to a one-off COBOL compiler version upgrade applied to the build environment, which changed intermediate rounding behavior for a COMP-3 calculation in LGAPOL01 that had never been explicitly ROUNDED in the source.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1
+Program: LGAPOL01
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,2,2,2,Resolved,Mainframe Application Support,2026-07-21 05:39:12,2026-07-21 16:01:01,Added explicit ROUNDED clause to the affected COMPUTE statement in LGAPOL01 and verified output against pre-upgrade baseline figures. One-time compiler upgrade side effect; compiler upgrade checklist updated to include a rounding regression check for financial calculations.

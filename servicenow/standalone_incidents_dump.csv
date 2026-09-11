@@ -1,0 +1,197 @@
+number,short_description,description,category,subcategory,priority,urgency,impact,state,assignment_group,opened_at,resolved_at,close_notes
+INC0010134,CICS region abended (ASRA) - bad LOADLIB member from mis-targeted deployment,"Region SSPROD1 abended shortly after a scheduled deployment window. Traced to a one-off deployment error where a load module intended for a different LPAR's test region was mistakenly promoted into the production LOADLIB concatenation.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: n/a
+Abend code: ASRA
+Suggested assignment group: CICS Systems Programming",software,Deployment,1,3,1,Resolved,CICS Systems Programming,2026-05-10 09:39:50,2026-05-11 01:29:49,Removed the mis-targeted load module and restarted the region with the correct build. One-time deployment targeting error; deployment pipeline updated to validate target LPAR/environment before promoting load modules.
+INC0010132,Endowment inquiry showing incorrect DOB format after copybook patch,"SSP2 Cust Inquiry briefly displayed dates of birth in the wrong format (MM-DD-YYYY instead of YYYY-MM-DD) for a subset of users. Traced to a one-off manual patch applied to a regional date-format setting in LGCMAREA that was not intended for this environment.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGICUS01
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,3,2,2,Resolved,Mainframe Application Support,2026-05-13 05:47:53,2026-05-13 13:23:08,Reverted the regional date-format patch back to the correct setting for this environment. One-time configuration error during environment refresh; refresh checklist updated to explicitly verify locale/date-format settings.
+INC0010119,GENACNTL TSQ ENQ contention during high-volume customer add batch,"A one-time bulk customer-load batch job ran concurrently with heavy online SSC1 Add Customer traffic, causing ENQ waits on the GENACNTL TSQ maintained by LGTESTC1. Several online add-customer transactions experienced elevated response time (8-12s) during the overlap window.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGTESTC1
+Job: GENABULK
+Suggested assignment group: CICS Systems Programming",performance,Online Transaction,3,2,3,Resolved,CICS Systems Programming,2026-05-13 23:09:05,2026-05-14 04:41:52,Confirmed root cause as ENQ serialization on GENACNTL during the one-off bulk load. Bulk job was not scheduled during business hours previously; scheduling note added so this does not recur. No code change needed.
+INC0010122,CICS region short-on-storage abend during month-end batch add-policy spike,"Region SSPROD1 hit short-on-storage (SOS) during the month-end policy-renewal batch window, causing several SSP1-SSP4 transactions to abend or queue. One-time volume-driven event; region recovered automatically once the batch completed.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1-SSP4
+Program: n/a
+Job: GENARENEW
+Abend code: ASRA/AKCT
+Suggested assignment group: CICS Systems Programming",performance,Online Transaction,2,3,3,Resolved,CICS Systems Programming,2026-05-17 10:01:16,2026-05-18 00:01:31,"Confirmed as a capacity event tied to month-end renewal volume, not a code defect. DSA limits temporarily raised for the remainder of the batch window; capacity planning made aware for next month-end sizing."
+INC0010138,Intermittent 'resource unavailable' errors during one-off concurrent load test,"Several SSx transactions briefly failed with Db2 resource-unavailable errors during a scheduled concurrent load test. Traced to the test briefly exceeding the Db2 subsystem's CTHREAD (concurrent thread) limit, which was sized for normal production concurrency, not the test's simulated peak.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1/SSP1-4
+Program: n/a
+SQLCODE: -904
+Suggested assignment group: Db2 DBA",performance,Database,3,2,3,Resolved,Db2 DBA,2026-05-20 12:22:36,2026-05-21 04:23:18,Confirmed as a one-time test-only event; CTHREAD was temporarily raised for the remainder of the test window and reverted afterward. Production CTHREAD sizing confirmed adequate for real traffic; no permanent change needed.
+INC0010133,Customer update transaction hanging - missing index after schema migration,"SSC1 Cust Update transactions began running very slowly (10-15s) for all users. Traced to a one-off schema migration the previous weekend that dropped and recreated the CUSTOMER table's secondary index, but the post-migration step to rebuild statistics (RUNSTATS) was missed, leading Db2 to pick a poor access path.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGUCDB01
+Suggested assignment group: Db2 DBA",performance,Database,2,3,3,Resolved,Db2 DBA,2026-05-25 08:33:30,2026-05-25 11:23:25,"Ran RUNSTATS on the CUSTOMER table and rebound the affected packages; response times returned to normal. One-time post-migration step miss; migration runbook updated to make RUNSTATS a mandatory, checked-off step."
+INC0010125,Motor policy add failing - Db2 package not rebound after DBRM regeneration,"SSP1 Add Policy failing with SQLCODE -805 (package not found) on LGAPDB01. Traced to a one-off deployment gap where the DBRM was regenerated during the last release but the corresponding Db2 package bind step was missed.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1
+Program: LGAPDB01
+SQLCODE: -805
+Return code: 90
+Suggested assignment group: Db2 DBA",software,Database,1,2,2,Resolved,Db2 DBA,2026-05-30 04:37:39,2026-05-30 16:52:17,Ran the missing BIND PACKAGE step manually for LGAPDB01. One-time deployment gap; release checklist updated to include an explicit bind-verification step so this doesn't recur on future releases.
+INC0010130,VSAM extend failure on KSDSPOLY during batch load - DASD volume full,"Nightly policy batch load job abended when LGAPVS01 could not extend KSDSPOLY. Traced to a one-off DASD volume reaching 100% utilization overnight after an unrelated application's one-time large dataset allocation consumed the remaining free space on the shared volume.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: LGAPVS01
+Job: GENAPBAT
+Return code: 80
+Suggested assignment group: z/OS Batch Ops",software,VSAM,1,3,2,Resolved,z/OS Batch Ops,2026-05-30 23:03:30,2026-05-31 06:10:00,Freed space on the shared DASD volume and re-ran the batch load successfully. One-time capacity collision with an unrelated application; storage team added a threshold alert on that volume group to catch this earlier next time.
+INC0010136,Commercial policy add - MQ trigger to billing system failed during MQ maintenance,"A commercial policy was added successfully in GENAPP but the downstream billing system was never notified. Traced to a one-off MQ channel restart during a scheduled MQ maintenance window that silently dropped the trigger message before the billing listener could process it.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP4
+Program: n/a
+Suggested assignment group: Mainframe Application Support",integration,Messaging,2,2,3,Resolved,Mainframe Application Support,2026-06-01 13:26:49,2026-06-01 22:38:27,Manually replayed the missed billing notification for the affected policy. One-time MQ maintenance-window collision; MQ team confirmed the maintenance record and agreed to notify application owners of channel restarts going forward.
+INC0010131,Motor policy add abending - EBCDIC/ASCII encoding mismatch from feed tool,"SSP1 Add Policy abending on a batch-fed record. Traced to a one-off incident where a Windows-based file-transfer tool was used to move a policy feed file in binary/ASCII mode instead of EBCDIC text mode, corrupting the packed-decimal fields LGAPDB01 expected.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1
+Program: LGAPDB01
+Job: GENAMFED
+Abend code: S0C7
+Suggested assignment group: Mainframe Application Support",software,Batch,2,2,2,Resolved,Mainframe Application Support,2026-06-05 23:10:19,2026-06-06 02:51:10,Re-transferred the feed file in the correct EBCDIC text transfer mode and re-ran the load; records processed cleanly. One-time operator error using an unfamiliar transfer tool; documented the correct transfer settings for future use of that tool.
+INC0010121,VSAM/Db2 mirror mismatch found for Motor policy during nightly reconciliation,"Nightly reconciliation batch found a Motor policy present in Db2 POLICY/MOTOR tables but missing from the KSDSPOLY VSAM mirror. Traced to a CICS short-on-storage (SOS) condition that hit LGAPVS01 immediately after the LGAPDB01 Db2 commit during a month-end volume spike, so the mirror write was lost without triggering the usual LGV0 rollback path.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1
+Program: LGAPVS01
+Job: GENARECON
+Return code: 80
+Suggested assignment group: CICS Systems Programming",software,VSAM,1,3,2,Resolved,CICS Systems Programming,2026-06-09 07:42:49,2026-06-09 11:57:25,Manually rebuilt the missing VSAM mirror record from Db2 using the reconciliation report. CICS region storage limits reviewed and increased ahead of next month-end cycle. Flagged as a data-integrity risk for Problem Management review - two-phase write pattern between LGAPDB01/LGAPVS01 does not currently guard against SOS between the two calls.
+INC0010118,GENACUSTNUM named counter unavailable - customer numbering inconsistency,"Named Counter Service was unavailable during Add Customer processing. LGACDB01 fell back to Db2 AUTO-IDENTITY as designed, but the GENACNTL TSQ high-water mark maintained by LGTESTC1 was not updated, causing a temporary mismatch between VSAM random-inquiry seeding and actual customer numbers.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: LGACDB01
+Return code: 00
+Suggested assignment group: CICS Systems Programming",software,Database,3,2,2,Resolved,CICS Systems Programming,2026-06-17 19:38:25,2026-06-18 10:00:14,Named Counter Service pool GENA was restarted after CICS maintenance; fallback behaved as designed. Ran LGSETUP to resynchronize GENACNTL TSQ once service was restored. One-time event tied to the maintenance window.
+INC0010129,Transient response-time spike across SSC1/SSP1-4 during capacity test,"All GENAPP online transactions saw elevated response times (3-5x normal) for about two hours. Traced to a one-off WLM service class misclassification during a scheduled capacity test, which put GENAPP transactions in a lower priority service class than intended for the duration of the test.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1/SSP1-4
+Program: n/a
+Suggested assignment group: CICS Systems Programming",performance,Online Transaction,2,3,3,Resolved,CICS Systems Programming,2026-06-18 13:12:59,2026-06-19 08:29:36,Corrected the WLM service class assignment back to the standard GENAPP policy once identified. One-time misconfiguration tied to the capacity test plan; test plan updated to snapshot and restore WLM policy automatically.
+INC0010140,DBB pipeline failed once due to z/OSMF token expiration,"A scheduled DBB build pipeline run for GENAPP failed at the z/OS Connect / z/OSMF authentication step. Traced to a one-off expired z/OSMF token that had not been rotated ahead of its scheduled expiry, unrelated to any code change in the pipeline run itself.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: n/a
+Suggested assignment group: Mainframe Application Support",software,CI/CD,3,2,3,Resolved,Mainframe Application Support,2026-06-22 12:55:39,2026-06-23 07:26:31,Rotated the z/OSMF token and re-ran the pipeline successfully. One-time credential-expiry gap; added a token-expiry monitor/alert to the pipeline configuration so this is caught before it blocks a build.
+INC0010135,Commercial policy delete - orphaned VSAM record after mid-transaction network blip,"A commercial policy was found deleted from Db2 but still present in the VSAM mirror. Traced to a one-off network blip between the CICS region and the coupling facility that caused LGDPVS01's mirror delete to fail silently after the Db2 delete in LGDPDB01 had already committed.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP4
+Program: LGDPVS01
+Return code: 80
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-06-23 03:10:38,2026-06-23 15:32:21,Manually removed the orphaned VSAM record to match Db2. One-time network transient confirmed by the network team's own incident log for that window; no application change needed.
+INC0010120,LGWEBST5 web statistics daemon abended - GENASTAT TSQ stopped refreshing,"The LGWEBST5 repeating statistics daemon abended (transaction storage violation), stopping refresh of the GENASTAT TSQ. Business Monitor web dashboard showed stale statistics for approximately 40 minutes before detection. No impact to core Add/Inquire/Update/Delete transactions.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: LGWEBST5
+Abend code: ASRA
+Suggested assignment group: CICS Systems Programming",software,Monitoring,4,1,4,Resolved,CICS Systems Programming,2026-06-25 02:28:08,2026-06-25 21:02:34,Storage violation traced to a one-time working-storage overrun when the GENA* named counters were reset mid-cycle by an ad hoc LGSETUP run. LGWEBST5 was restarted manually. No recurrence expected outside of another manual LGSETUP run during an active statistics cycle.
+INC0010126,Commercial policy inquiry abending - copybook mismatch after manual edit,"SSP4 Cust/Policy Inquiry abending with a level-mismatch (S0C4-class) error in LGIPOL01. Traced to a one-off manual copybook edit applied directly to LGCMAREA outside of the normal DBB pipeline, which was never recompiled into LGIPDB01, leaving the two programs out of sync.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP4
+Program: LGIPOL01 / LGIPDB01
+Abend code: S0C4
+Suggested assignment group: CICS Systems Programming",software,Online Transaction,1,3,2,Resolved,CICS Systems Programming,2026-06-27 06:05:36,2026-06-27 13:33:47,"Reverted the out-of-band copybook edit and reapplied the intended change through the normal DBB build pipeline so both programs recompiled together. One-time process breach; reminder issued that copybook changes must always go through DBB, not manual dataset edits."
+INC0010123,SOA web service call to SSISTAT1 timing out from LGWEBST5,"LGWEBST5's optional TCP/IP push to the Business Monitor listener (SSISTAT1) timed out once during a network maintenance window, logged to CSMT via LGSTSQ. Statistics TSQ (GENASTAT) continued to update normally; only the external web push was affected.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: LGWEBST5
+Suggested assignment group: Mainframe Application Support",network,Integration,4,1,4,Resolved,Mainframe Application Support,2026-07-03 22:52:37,2026-07-04 10:51:23,"Confirmed one-time network maintenance on the TCP/IP listener side, no CICS or application change required. Network team confirmed maintenance window in their own change record."
+INC0010128,GENARENEW batch delayed a full day by JES2 job class contention,"Month-end policy renewal batch (GENARENEW) was delayed by roughly 20 hours due to a one-off JES2 job class configuration change made for an unrelated application, which inadvertently starved GENARENEW's job class of initiators.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: n/a
+Job: GENARENEW
+Suggested assignment group: z/OS Batch Ops",performance,Batch,2,3,2,Resolved,z/OS Batch Ops,2026-07-04 09:46:41,2026-07-04 23:56:21,Reverted the JES2 job class change that had starved GENARENEW's initiators. One-time scheduling conflict; JES2 change process updated to require batch window impact review before altering shared job classes.
+INC0010139,TAZ regression run flagged a false positive from test-data drift,"An automated TAZ (Test Accelerator for Z) regression run against GENAPP flagged a failure on the customer inquiry test case. Investigation found the application behaved correctly - the one-off failure was caused by test data in the regression suite that had drifted out of sync with a recent, unrelated data refresh.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSC1
+Program: n/a
+Suggested assignment group: Mainframe Application Support",software,Testing,4,1,4,Resolved,Mainframe Application Support,2026-07-12 19:25:08,2026-07-13 09:56:43,"Confirmed no application defect; refreshed the TAZ regression suite's test data to match the current environment. One-time test-data drift, not a code issue - closed with no application change."
+INC0010127,House policy update failing - new user ID missing CICS transaction authority,"A newly onboarded branch user could not access SSP3 (House Policy Update), receiving a security violation. Traced to a one-off RACF provisioning gap - the new user ID was added to the general CICS region group but not the GENAPP transaction resource class.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP3
+Program: n/a
+Suggested assignment group: Mainframe Application Support",security,Access,3,2,3,Resolved,Mainframe Application Support,2026-07-13 12:53:13,2026-07-14 01:48:24,Added the missing RACF permit for the user to the GENAPP transaction resource class. One-time onboarding gap; added a check to the new-starter provisioning runbook so future onboarding includes GENAPP transaction access.
+INC0010124,Endowment policy delete stuck - VSAM record locked by stuck batch job,"SSP2 Delete Policy hung waiting on a VSAM record lock in KSDSPOLY. Traced to a one-off GENARECON reconciliation job that had abended mid-transaction the previous night without releasing its VSAM enqueue, leaving the record locked for LGDPVS01 all morning.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP2
+Program: LGDPVS01
+Job: GENARECON
+Suggested assignment group: CICS Systems Programming",software,VSAM,2,2,2,Resolved,CICS Systems Programming,2026-07-15 02:52:31,2026-07-15 11:41:59,"Identified and cancelled the orphaned enqueue left by the previous night's abended GENARECON run, releasing the lock. One-time cleanup; GENARECON abend itself was a separate unrelated dataset issue already resolved."
+INC0010117,Nightly COBOL compile job abending - load library dataset not cataloged,"GENACOMP nightly compile job (cobol.jcl) abended with JCL error, RC=612. Load library dataset was not cataloged following the weekend DASD migration. One-time infrastructure issue, unrelated to application code.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: cobol.jcl
+Job: GENACOMP
+Return code: JCL RC=612
+Suggested assignment group: z/OS Batch Ops",software,Batch,2,2,2,Resolved,z/OS Batch Ops,2026-07-15 13:49:49,2026-07-15 23:40:46,Load library dataset re-cataloged by storage team following DASD migration runbook gap. One-time fix; migration runbook updated to include cataloging step for future migrations.
+INC0010137,CICS transaction dump dataset full - blocking new transaction dumps,"Ops noticed no new CICS transaction dumps were being captured for GENAPP abends. Traced to a one-off situation where the transaction dump dataset had filled up after an unrelated spike in abends from a different application sharing the same region's dump dataset.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: n/a
+Program: n/a
+Suggested assignment group: CICS Systems Programming",software,Monitoring,3,1,3,Resolved,CICS Systems Programming,2026-07-18 18:47:11,2026-07-19 12:51:15,Cleared and reset the transaction dump dataset. One-time capacity issue driven by an unrelated application's abend spike; considered separating dump datasets per application but not required given this was an isolated event.
+INC0010141,Motor policy quote calculation off by a rounding error after compiler upgrade,"A single motor policy quote was found to be off by a few cents. Traced to a one-off COBOL compiler version upgrade applied to the build environment, which changed intermediate rounding behavior for a COMP-3 calculation in LGAPOL01 that had never been explicitly ROUNDED in the source.
+
+--- Technical signal ---
+Application: CICS-GENAPP
+Transaction: SSP1
+Program: LGAPOL01
+Suggested assignment group: Mainframe Application Support",software,Online Transaction,2,2,2,Resolved,Mainframe Application Support,2026-07-21 05:39:12,2026-07-21 16:01:01,Added explicit ROUNDED clause to the affected COMPUTE statement in LGAPOL01 and verified output against pre-upgrade baseline figures. One-time compiler upgrade side effect; compiler upgrade checklist updated to include a rounding regression check for financial calculations.
