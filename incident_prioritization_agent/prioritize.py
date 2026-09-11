@@ -23,6 +23,8 @@ import argparse
 from datetime import datetime, timezone
 from collections import defaultdict
 
+from ml_clustering import tfidf_text_clusters
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 # ---------------------------------------------------------------------------
@@ -128,16 +130,105 @@ def escalation_hits(text):
     return sum(1 for kw in ESCALATION_KEYWORDS if kw in text)
 
 
-def cluster_and_score(records, now=None):
-    now = now or datetime.now(timezone.utc).replace(tzinfo=None)
-    clusters = defaultdict(list)
-    for rec in records:
-        clusters[extract_signature(rec)].append(rec)
+def build_groups(records, method="ensemble"):
+    """
+    Groups records into recurring-failure clusters using one of three methods:
 
-    max_freq = max((len(v) for v in clusters.values()), default=1)
+      "signature" - pure rule-based: exact match on the structured
+                    Program/Transaction/Abend/SQLCODE/Return-code fields.
+                    Fast, fully explainable, but blind to incidents where
+                    that structured signal wasn't captured.
+
+      "tfidf"     - pure ML: TF-IDF + Agglomerative clustering (see
+                    ml_clustering.py) on every incident's text, ignoring
+                    structured fields entirely.
+
+      "ensemble" (default) - best of both: use signature matching wherever
+                    a real structured signature exists (trustworthy, exact),
+                    and fall back to ML text clustering ONLY for the subset
+                    of incidents with no structured signal at all - which is
+                    exactly the case the rule-based approach can't handle on
+                    its own. This is the mode prioritize.py runs by default.
+
+    Returns: list of member-lists (each inner list = one cluster's incidents).
+    """
+    if method == "tfidf":
+        texts = [(r.get("short_description", "") + " " + (r.get("description") or ""))
+                 for r in records]
+        labels = tfidf_text_clusters(texts)
+        buckets = defaultdict(list)
+        for rec, lbl in zip(records, labels):
+            buckets[lbl].append(rec)
+        return list(buckets.values())
+
+    # "signature" and "ensemble" both start with rule-based grouping
+    sig_groups = defaultdict(list)
+    for rec in records:
+        sig_groups[extract_signature(rec)].append(rec)
+
+    if method == "signature":
+        return list(sig_groups.values())
+
+    # ensemble: pull out the no-structured-signal ("(text)") bucket(s) and
+    # re-cluster just those with the ML model instead of a naive exact-text
+    # match, so near-duplicate free-text complaints can still group together.
+    final_groups = []
+    text_fallback_records = []
+    for sig, members in sig_groups.items():
+        if sig[0] == "(text)":
+            text_fallback_records.extend(members)
+        else:
+            final_groups.append(members)
+
+    if text_fallback_records:
+        texts = [(r.get("short_description", "") + " " + (r.get("description") or ""))
+                 for r in text_fallback_records]
+        labels = tfidf_text_clusters(texts)
+        sub_buckets = defaultdict(list)
+        for rec, lbl in zip(text_fallback_records, labels):
+            sub_buckets[lbl].append(rec)
+        final_groups.extend(sub_buckets.values())
+
+    return final_groups
+
+
+def describe_group(members):
+    """
+    Best-effort human-readable description of a cluster for reporting:
+    if every member shares an identical structured signature, use it
+    directly (this is a pure rule-based cluster). Otherwise (members were
+    grouped by ML text similarity instead), fall back to the first member's
+    short description and flag the cluster's origin accordingly.
+    """
+    first_sig = extract_signature(members[0])
+    homogeneous = all(extract_signature(m) == first_sig for m in members)
+
+    if homogeneous and first_sig[0] != "(text)":
+        program, transaction, abend, sqlcode, return_code = first_sig
+        top_program = program if program else (transaction or members[0].get("short_description", "")[:40])
+        return (
+            {"program": program, "transaction": transaction, "abend": abend,
+             "sqlcode": sqlcode, "return_code": return_code},
+            top_program,
+            "signature",
+        )
+    else:
+        top_program = members[0].get("short_description", "")[:40]
+        return (
+            {"program": "", "transaction": "", "abend": "", "sqlcode": "", "return_code": ""},
+            top_program,
+            "ml-text-similarity",
+        )
+
+
+def cluster_and_score(records, now=None, method="ensemble"):
+    now = now or datetime.now(timezone.utc).replace(tzinfo=None)
+    groups = build_groups(records, method=method)
+
+    max_freq = max((len(g) for g in groups), default=1)
 
     results = []
-    for sig, members in clusters.items():
+    for members in groups:
         freq = len(members)
         freq_score = freq / max_freq if max_freq else 0.0
 
@@ -165,16 +256,11 @@ def cluster_and_score(records, now=None):
         )
         composite = max(0.0, min(1.0, composite))
 
-        program, transaction, abend, sqlcode, return_code = sig
-        top_program = program if program and program != "(text)" else (
-            members[0].get("short_description", "")[:40]
-        )
+        signature, top_program, cluster_method = describe_group(members)
 
         results.append({
-            "signature": {
-                "program": program, "transaction": transaction, "abend": abend,
-                "sqlcode": sqlcode, "return_code": return_code,
-            },
+            "signature": signature,
+            "cluster_method": cluster_method,
             "top_program": top_program,
             "incident_count": freq,
             "priority_score": round(composite, 2),
@@ -224,17 +310,22 @@ def why_sentence(c):
     return "Driven by " + ", ".join(parts) + "."
 
 
-def write_html_report(records, clusters, top_n, out_path):
+def write_html_report(records, clusters, top_n, out_path, clustering_method="ensemble"):
     recurring = [c for c in clusters if c["is_recurring"]]
     top = clusters[:top_n]
     top_cluster = clusters[0] if clusters else None
 
+    method_labels = {"signature": "Signature (rule-based)", "tfidf": "TF-IDF (ML)",
+                      "ensemble": "Ensemble (rule-based + ML)"}
+
     rows = ""
     for rank, c in enumerate(top, start=1):
+        badge_color = "#60a5fa" if c["cluster_method"] == "signature" else "#c084fc"
+        badge_text = "signature match" if c["cluster_method"] == "signature" else "ML text clustering"
         rows += f"""
         <tr>
           <td class="rank">#{rank}</td>
-          <td>{c['top_program']}</td>
+          <td>{c['top_program']}<br><span class="badge" style="background:{badge_color}22;color:{badge_color};border:1px solid {badge_color}55;">{badge_text}</span></td>
           <td>{c['incident_count']}</td>
           <td>{c['priority_score']:.2f}</td>
           <td>{c['risk_score_pct']:.1f}%</td>
@@ -266,13 +357,18 @@ def write_html_report(records, clusters, top_n, out_path):
   .barwrap {{ position:relative; width:70px; height:14px; background:#0f172a; border-radius:4px; overflow:hidden; }}
   .bar {{ height:100%; border-radius:4px; }}
   .barval {{ position:absolute; top:-1px; left:6px; font-size:10px; color:#0f172a; font-weight:700; mix-blend-mode:difference; color:#e2e8f0; }}
-  .legend {{ display:flex; gap:20px; margin:16px 0 8px; font-size:12px; color:#94a3b8; flex-wrap:wrap; }}
+  .legend {{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin:16px 0 20px; }}
+  .legend-item {{ background:#1e293b; border:1px solid #334155; border-radius:8px; padding:10px 12px; }}
+  .legend-item > span:first-child {{ font-size:13px; color:#e2e8f0; }}
+  .legend-desc {{ display:block; font-size:11px; color:#94a3b8; margin-top:4px; line-height:1.4; }}
+  .hint {{ margin-top:10px; color:#64748b; font-size:11px; font-style:italic; }}
   .legend span.dot {{ display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:6px; }}
   .footer {{ margin-top:24px; color:#64748b; font-size:12px; }}
+  .badge {{ display:inline-block; font-size:10px; padding:2px 6px; border-radius:4px; margin-top:4px; }}
 </style></head>
 <body>
   <h1>Phase 1 &mdash; Incident Discovery Agent</h1>
-  <div class="subtitle">Feed: ServiceNow &middot; Clustering by recurring root-cause signature &middot; Generated {datetime.now(timezone.utc).replace(tzinfo=None).strftime('%Y-%m-%d %H:%M UTC')}</div>
+  <div class="subtitle">Feed: ServiceNow &middot; Clustering method: {method_labels.get(clustering_method, clustering_method)} &middot; Generated {datetime.now(timezone.utc).replace(tzinfo=None).strftime('%Y-%m-%d %H:%M UTC')}</div>
 
   <div class="metrics">
     <div class="metric"><div class="label">Incidents Ingested</div><div class="value">{len(records)}</div></div>
@@ -284,16 +380,41 @@ def write_html_report(records, clusters, top_n, out_path):
   </div>
 
   <div class="legend">
-    <span><span class="dot" style="background:#60a5fa"></span>Frequency (wt 0.35)</span>
-    <span><span class="dot" style="background:#f87171"></span>Severity (wt 0.30)</span>
-    <span><span class="dot" style="background:#fbbf24"></span>Escalation (wt 0.20)</span>
-    <span><span class="dot" style="background:#4ade80"></span>Recency (wt 0.15)</span>
+    <div class="legend-item">
+      <span><span class="dot" style="background:#60a5fa"></span><b>Frequency</b> (wt 0.35)</span>
+      <span class="legend-desc">How often this exact failure recurs, relative to the largest cluster. Occurrences &divide; largest cluster's occurrences.</span>
+    </div>
+    <div class="legend-item">
+      <span><span class="dot" style="background:#f87171"></span><b>Severity</b> (wt 0.30)</span>
+      <span class="legend-desc">Average priority/urgency/impact across the cluster's incidents. P1 scores near 1.0, P5 scores near 0.2.</span>
+    </div>
+    <div class="legend-item">
+      <span><span class="dot" style="background:#fbbf24"></span><b>Escalation</b> (wt 0.20)</span>
+      <span class="legend-desc">Keyword hits in description/close notes &mdash; "recurring", "duplicate", "blocker", "CAB", "escalat...", etc.</span>
+    </div>
+    <div class="legend-item">
+      <span><span class="dot" style="background:#4ade80"></span><b>Recency</b> (wt 0.15)</span>
+      <span class="legend-desc">Exponential decay from the most recent occurrence's age. Still-happening today scores 1.0; 30 days old scores ~0.37.</span>
+    </div>
   </div>
 
   <table>
-    <tr><th>Rank</th><th>Top Program / Signature</th><th>Occurrences</th><th>Priority Score</th><th>Risk Score</th><th>Frequency</th><th>Severity</th><th>Escalation</th><th>Recency</th><th>Sample Incidents</th><th>Description</th></tr>
+    <tr>
+      <th>Rank</th>
+      <th>Top Program / Signature</th>
+      <th>Occurrences</th>
+      <th>Priority Score</th>
+      <th>Risk Score</th>
+      <th title="How often this exact failure recurs, relative to the largest cluster">Frequency</th>
+      <th title="Average priority/urgency/impact across the cluster - P1 scores highest">Severity</th>
+      <th title="Keyword hits signaling a known/worsening/unresolved problem in notes">Escalation</th>
+      <th title="How recently this failure last occurred - decays over ~30 days">Recency</th>
+      <th>Sample Incidents</th>
+      <th>Description</th>
+    </tr>
     {rows}
   </table>
+  <div class="hint">Hover any factor column header for its definition. Full methodology in README.md.</div>
 
   <div class="footer">Each colored bar shows that factor's raw 0&ndash;1 score for this cluster before weighting. Priority Score = 0.35&times;Frequency + 0.30&times;Severity + 0.20&times;Escalation + 0.15&times;Recency. See README.md for full methodology.</div>
 </body></html>"""
@@ -308,6 +429,10 @@ def main():
     ap.add_argument("--output", default=os.path.join(HERE, "results.json"))
     ap.add_argument("--html", default=os.path.join(HERE, "phase1_summary.html"))
     ap.add_argument("--top", type=int, default=5)
+    ap.add_argument("--clustering", choices=["signature", "tfidf", "ensemble"], default="ensemble",
+                     help="signature = rule-based only; tfidf = ML text clustering only; "
+                          "ensemble (default) = rule-based, with ML text clustering filling in "
+                          "for incidents with no structured signature.")
     args = ap.parse_args()
 
     if not os.path.exists(args.input):
@@ -322,26 +447,31 @@ def main():
     if not records:
         sys.exit("No incident records found in input file.")
 
-    clusters = cluster_and_score(records)
+    clusters = cluster_and_score(records, method=args.clustering)
+    ml_assisted = sum(1 for c in clusters if c["cluster_method"] == "ml-text-similarity")
 
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump({
             "generated_at": datetime.now(timezone.utc).replace(tzinfo=None).isoformat(),
+            "clustering_method": args.clustering,
             "incidents_ingested": len(records),
             "clusters_formed": len(clusters),
+            "ml_assisted_clusters": ml_assisted,
             "top_n": args.top,
             "clusters": clusters,
         }, f, indent=2)
 
-    write_html_report(records, clusters, args.top, args.html)
+    write_html_report(records, clusters, args.top, args.html, args.clustering)
 
+    print(f"Clustering method: {args.clustering}")
     print(f"Incidents ingested: {len(records)}")
-    print(f"Clusters formed: {len(clusters)}")
+    print(f"Clusters formed: {len(clusters)} ({ml_assisted} via ML text similarity, "
+          f"{len(clusters) - ml_assisted} via structured signature match)")
     print(f"\nTop {args.top} recurring/priority incident clusters:\n")
     for rank, c in enumerate(clusters[:args.top], start=1):
         print(f"#{rank}  {c['top_program']:<20} occurrences={c['incident_count']:<4} "
               f"priority_score={c['priority_score']:.2f}  risk={c['risk_score_pct']:.0f}%  "
-              f"e.g. {', '.join(c['member_numbers'][:3])}")
+              f"[{c['cluster_method']}]  e.g. {', '.join(c['member_numbers'][:3])}")
     print(f"\nFull results: {args.output}")
     print(f"HTML summary: {args.html}")
 
